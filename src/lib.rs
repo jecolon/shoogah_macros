@@ -7,11 +7,13 @@
 
 mod cxp;
 mod hml;
+mod spr;
 mod suf;
 
 use cxp::{cxp_impl, ela_impl, elv_impl};
 use hml::hml_impl;
 use proc_macro::TokenStream;
+use spr::spr_impl;
 use suf::suf_impl;
 
 /// Define a `std::collections::HashMap` via a simple literal.
@@ -55,4 +57,12 @@ pub fn ela(input: TokenStream) -> TokenStream {
 #[proc_macro]
 pub fn suf(input: TokenStream) -> TokenStream {
     suf_impl(input)
+}
+
+/// # Collect common field values from an `Iterator`.
+///
+/// Refer to the `shoogah` crate documentation for details.
+#[proc_macro]
+pub fn spr(input: TokenStream) -> TokenStream {
+    spr_impl(input)
 }
