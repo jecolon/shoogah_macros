@@ -1,7 +1,7 @@
 use proc_macro::TokenStream;
 use quote::quote;
 use syn::parse::{Parse, ParseStream, Result};
-use syn::{custom_punctuation, parenthesized, parse_macro_input, Expr, Token};
+use syn::{custom_punctuation, parenthesized, parse_macro_input, Expr, Ident, Token};
 
 // CondExpr is a shorthand form of the if/else expresion.
 struct CondExpr {
@@ -138,7 +138,7 @@ pub fn elv_impl(input: TokenStream) -> TokenStream {
 // result, and assigned-to variable are the same. In other words, assignment only
 // occurs if the left hand side evaluates to false.
 struct ElvisAssign {
-    condition: Expr,
+    condition: Ident,
     alternative: Expr,
     negated: bool,
 }
@@ -152,7 +152,7 @@ impl Parse for ElvisAssign {
         }
         let mut content;
         parenthesized!(content in input);
-        let condition: Expr = content.parse()?;
+        let condition: Ident = content.parse()?;
         input.parse::<ElvisAssignment>()?;
         parenthesized!(content in input);
         let alternative: Expr = content.parse()?;
