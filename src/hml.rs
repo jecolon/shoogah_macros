@@ -57,8 +57,8 @@ impl Parse for MapLiteral {
     }
 }
 
-// map macro implementation.
-pub fn map_impl(input: TokenStream) -> TokenStream {
+// hml macro implementation.
+pub fn hml_impl(input: TokenStream) -> TokenStream {
     let MapLiteral { entries } = parse_macro_input!(input as MapLiteral);
 
     if let Some(entries) = entries {

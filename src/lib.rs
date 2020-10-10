@@ -6,11 +6,11 @@
 //! that require such *truthiness*.
 
 mod cxp;
-mod map;
+mod hml;
 mod suf;
 
 use cxp::{cxp_impl, ela_impl, elv_impl};
-use map::map_impl;
+use hml::hml_impl;
 use proc_macro::TokenStream;
 use suf::suf_impl;
 
@@ -18,66 +18,40 @@ use suf::suf_impl;
 ///
 /// Refer to the `shoogah` crate documentation for details.
 #[proc_macro]
-pub fn map(input: TokenStream) -> TokenStream {
-    map_impl(input)
+pub fn hml(input: TokenStream) -> TokenStream {
+    hml_impl(input)
 }
 
-/// cxp lets you express an if/else in a shorthand manner. This is sometimes
-/// called the *ternary* operator in other languages.
+/// Express an if/else in a shorthand manner. This is sometimes called the
+/// *ternary* operator in other languages.
 ///
-/// For example:
-/// ```ignore
-///     let username = cxp!{ (3 > 4) ? ("a") : ("b") };
-/// ```
-/// This expands to a normal Rust if/else expression, so Rust syntax and type
-/// rules apply to the expressions. Given how complex expressions can be, the
-/// parentheses are required.
+/// Refer to the `shoogah` crate documentation for details.
 #[proc_macro]
 pub fn cxp(input: TokenStream) -> TokenStream {
     cxp_impl(input)
 }
 
-/// elv (Elvis!) lets you express an if/else in a manner shorter than the cxp
-/// macro when the result is the same as the condition.
+/// When the main result of an if/else is the same as the tested condition,
+/// Elvis (elv!) is here to help.
 ///
-/// For example:
-/// ```ignore
-///     let username = elv!{ ("José") ?: ("Unknown") };
-/// ```
-/// This expands to a normal Rust if/else expression, so Rust syntax and type
-/// rules apply to the expressions. Given how complex expressions can be, the
-/// parentheses are required.
+/// Refer to the `shoogah` crate documentation for details.
 #[proc_macro]
 pub fn elv(input: TokenStream) -> TokenStream {
     elv_impl(input)
 }
 
-/// ela lets you express an if/else in a manner shorter than the cxp and elv
-/// macros when the result and assigned-to variable is the same as the condition.
-/// In other words, assignment only occurs if the left hand side evaluates to false.
+/// When the assigned-to variable is the condition being tested, Elvis assign
+/// (ela!) can help even more.
 ///
-/// For example:
-/// ```ignore
-///     let mut username = "";
-///     ela!{ (username) ?= ("José")) }; // username == "José"
-/// ```
-/// This expands to a normal Rust if/else expression, so Rust syntax and type
-/// rules apply to the expressions. Given how complex expressions can be, the
-/// parentheses are required.
+/// Refer to the `shoogah` crate documentation for details.
 #[proc_macro]
 pub fn ela(input: TokenStream) -> TokenStream {
     ela_impl(input)
 }
 
-/// suf is shorthand for incrementing or decrementing a number by 1.
+/// Incrementing or decrementing by 1.
 ///
-/// For example:
-/// ```ignore
-///     let mut x = 1;
-///     assert_eq!(2, suf!{ x++ });
-///     assert_eq!(1, suf!{ x-- });
-/// ```
-/// This expands to a normal Rust expresion like x += 1, so normal type rules apply.
+/// Refer to the `shoogah` crate documentation for details.
 #[proc_macro]
 pub fn suf(input: TokenStream) -> TokenStream {
     suf_impl(input)
