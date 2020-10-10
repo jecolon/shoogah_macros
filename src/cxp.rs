@@ -150,12 +150,9 @@ impl Parse for ElvisAssign {
             negated = true;
             input.parse::<Token![!]>()?;
         }
-        let mut content;
-        parenthesized!(content in input);
-        let condition: Ident = content.parse()?;
+        let condition: Ident = input.parse()?;
         input.parse::<ElvisAssignment>()?;
-        parenthesized!(content in input);
-        let alternative: Expr = content.parse()?;
+        let alternative: Expr = input.parse()?;
 
         Ok(ElvisAssign {
             condition,
