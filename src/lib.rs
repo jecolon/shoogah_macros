@@ -1,5 +1,6 @@
 //! shoogah_macros is a helper that provides the macros for the `shoogah` crate.
 
+mod boo;
 mod cxp;
 mod hml;
 mod sin;
@@ -8,6 +9,7 @@ mod suf;
 
 #[macro_use]
 extern crate lazy_static;
+use boo::boo_impl;
 use cxp::{cxp_impl, ela_impl, elv_impl};
 use hml::hml_impl;
 use proc_macro::TokenStream;
@@ -72,4 +74,12 @@ pub fn spr(input: TokenStream) -> TokenStream {
 #[proc_macro]
 pub fn sin(input: TokenStream) -> TokenStream {
     sin_impl(input)
+}
+
+/// # Boolean coercion
+///
+/// Refer to the `shoogah` crate documentation for details.
+#[proc_macro]
+pub fn boo(input: TokenStream) -> TokenStream {
+    boo_impl(input)
 }
