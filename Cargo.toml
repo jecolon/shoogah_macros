@@ -1,6 +1,6 @@
 [package]
 name = "shoogah_macros"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Jose Colon Rodriguez <jec.rod@gmail.com>"]
 edition = "2018"
 description = "macros for the shoogah library crate"
@@ -16,3 +16,5 @@ proc-macro = true
 quote = "1"
 syn = { version = "1", features = ["full"] }
 as_bool = "0.1"
+lazy_static = "1.4"
+regex = "1"

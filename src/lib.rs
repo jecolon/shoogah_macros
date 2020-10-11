@@ -2,12 +2,16 @@
 
 mod cxp;
 mod hml;
+mod sin;
 mod spr;
 mod suf;
 
+#[macro_use]
+extern crate lazy_static;
 use cxp::{cxp_impl, ela_impl, elv_impl};
 use hml::hml_impl;
 use proc_macro::TokenStream;
+use sin::sin_impl;
 use spr::spr_impl;
 use suf::suf_impl;
 
@@ -60,4 +64,12 @@ pub fn suf(input: TokenStream) -> TokenStream {
 #[proc_macro]
 pub fn spr(input: TokenStream) -> TokenStream {
     spr_impl(input)
+}
+
+/// # String interpolation.
+///
+/// Refer to the `shoogah` crate documentation for details.
+#[proc_macro]
+pub fn sin(input: TokenStream) -> TokenStream {
+    sin_impl(input)
 }
