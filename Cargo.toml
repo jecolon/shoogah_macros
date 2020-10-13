@@ -1,6 +1,6 @@
 [package]
 name = "shoogah_macros"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["Jose Colon Rodriguez <jec.rod@gmail.com>"]
 edition = "2018"
 description = "macros for the shoogah library crate"
